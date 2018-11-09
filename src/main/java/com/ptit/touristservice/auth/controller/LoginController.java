@@ -4,7 +4,6 @@ import com.ptit.touristservice.auth.model.User;
 import com.ptit.touristservice.auth.service.LoginService;
 import com.ptit.touristservice.base.BaseController;
 import com.ptit.touristservice.base.response.Response;
-import com.ptit.touristservice.constants.Constant;
 import com.ptit.touristservice.constants.HeaderConstant;
 import com.ptit.touristservice.constants.ResponseConstant;
 import com.ptit.touristservice.utils.UserDecodeUtils;
@@ -29,7 +28,7 @@ public class LoginController extends BaseController {
     })
     @PostMapping("/customer/login")
     public Response loginAsCustomer(@ApiParam(name = "encodedString", value = "username+\":\"+password, lấy kết quả encode theo Base64, sau đó thêm \"Basic \" + kết quả")
-                                         @RequestHeader(HeaderConstant.AUTHORIZATION) String encodedString) {
+                                    @RequestHeader(HeaderConstant.AUTHORIZATION) String encodedString) {
         Response response;
         try {
             User user = UserDecodeUtils.decodeFromAuthorizationHeader(encodedString);
