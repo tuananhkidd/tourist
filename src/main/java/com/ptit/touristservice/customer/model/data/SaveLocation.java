@@ -44,6 +44,7 @@ public class SaveLocation {
         setFormattedAddress(saveLocationBody.getFormattedAddress());
         setFormattedPhoneNumber(saveLocationBody.getFormattedPhoneNumber());
         setUser(user);
+        setPlaceId(saveLocationBody.getPlaceId());
         setRating(saveLocationBody.getRating());
     }
 
