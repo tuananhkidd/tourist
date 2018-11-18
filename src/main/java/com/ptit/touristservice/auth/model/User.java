@@ -1,5 +1,6 @@
 package com.ptit.touristservice.auth.model;
 
+import com.ptit.touristservice.customer.model.body.PersonalInfoBody;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -91,4 +92,9 @@ public class User {
         }
     }
 
+    public void update(PersonalInfoBody personalInfoBody) {
+        setAvatarUrl(personalInfoBody.getAvatarUrl());
+        setFullName(personalInfoBody.getFullName());
+        setBirthDay(personalInfoBody.getBirthDay() == -1 ? null : new Date(personalInfoBody.getBirthDay()));
+    }
 }

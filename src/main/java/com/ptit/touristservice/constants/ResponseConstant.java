@@ -35,5 +35,6 @@ public class ResponseConstant {
         public static final String JOINED_ROOM_NOT_FOUND = "joined_room_not_found";
         public static final String USER_IS_NOT_HOUSE_OWNER = "USER_IS_NOT_HOUSE_OWNER";
         public static final String ACCOUNT_NOT_EXIST = "ACCOUNT_NOT_EXIST";
+        public static final String USER_NOT_EXIST = "user_not_exist";
     }
 }
