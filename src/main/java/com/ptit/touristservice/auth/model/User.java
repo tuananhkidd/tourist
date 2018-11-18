@@ -23,6 +23,14 @@ public class User {
     private Date birthDay;
     private String avatarUrl;
 
+    public User(RegisterBody registerBody) {
+        setUsername(registerBody.getUsername());
+        setPassword(registerBody.getPassword());
+        setFullName(registerBody.getFullName());
+        setBirthDay(registerBody.getBirthDay() == -1 ? null:new Date(registerBody.getBirthDay()));
+        setAvatarUrl(registerBody.getAvatarUrl());
+    }
+
 
     public String getFullName() {
         return fullName;

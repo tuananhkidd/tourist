@@ -11,6 +11,7 @@ public interface UserRespository extends JpaRepository<User,String> {
     User findByUsernameAndPassword(String username, String password);
 
     User findByUsername(String username);
+    boolean existsByUsername(String username);
 
     @Query("select u.id from User u where u.username = ?1")
     String getDataIDWithUsername(String userName);

@@ -3,8 +3,11 @@ package com.ptit.touristservice.auth.service;
 import com.ptit.touristservice.auth.dao.UserRespository;
 import com.ptit.touristservice.auth.model.JWTToken;
 import com.ptit.touristservice.auth.model.LoginResult;
+import com.ptit.touristservice.auth.model.RegisterBody;
+import com.ptit.touristservice.auth.model.User;
 import com.ptit.touristservice.base.response.BadRequestResponse;
 import com.ptit.touristservice.base.response.OkResponse;
+import com.ptit.touristservice.base.response.ResourceExistResponse;
 import com.ptit.touristservice.base.response.Response;
 import com.ptit.touristservice.constants.ApplicationConstant;
 import com.ptit.touristservice.constants.HeaderConstant;
@@ -51,4 +54,12 @@ public class LoginService {
         return new OkResponse(loginResult);
     }
 
+    public Response register(RegisterBody registerBody) {
+        if(userRespository.existsByUsername(registerBody.getUsername())){
+            return new ResourceExistResponse("Account exist");
+        }
+        User user = new User(registerBody);
+        userRespository.save(user);
+        return new OkResponse(user.getUsername());
+    }
 }

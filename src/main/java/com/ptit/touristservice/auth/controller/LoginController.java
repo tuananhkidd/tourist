@@ -1,9 +1,12 @@
 package com.ptit.touristservice.auth.controller;
 
+import com.ptit.touristservice.auth.model.RegisterBody;
 import com.ptit.touristservice.auth.model.User;
 import com.ptit.touristservice.auth.service.LoginService;
 import com.ptit.touristservice.base.BaseController;
+import com.ptit.touristservice.base.response.OkResponse;
 import com.ptit.touristservice.base.response.Response;
+import com.ptit.touristservice.base.response.ServerErrorResponse;
 import com.ptit.touristservice.constants.HeaderConstant;
 import com.ptit.touristservice.constants.ResponseConstant;
 import com.ptit.touristservice.utils.UserDecodeUtils;
@@ -38,6 +41,24 @@ public class LoginController extends BaseController {
             response = new Response(HttpStatus.UNAUTHORIZED, ResponseConstant.Vi.WRONG_EMAIL_OR_PASSWORD);
         }
         return response;
+    }
+
+    @ApiOperation(value = "Đăng ký tài khoản", response = Iterable.class)
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Đăng ký tài khoản thành công", response = OkResponse.class),
+            @ApiResponse(code = 409, message = "Email đã tồn tại"),
+            @ApiResponse(code = 403, message = "Mật khẩu yêu cầu trên 6 kí tự"),
+            @ApiResponse(code = 400, message = "Email không hợp lệ"),
+            @ApiResponse(code = 400, message = "Trường không hợp lệ")
+    })
+    @PostMapping("/register")
+    public Response register(@RequestBody RegisterBody studentRegisterBody) {
+        try {
+            return loginService.register(studentRegisterBody);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ServerErrorResponse();
+        }
     }
 
 }
