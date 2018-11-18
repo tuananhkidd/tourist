@@ -16,7 +16,19 @@ public class SaveLocation {
     private String id;
     private Double lat;
     private Double lon;
-    private String address;
+    private String formattedAddress;
+    private String formattedPhoneNumber;
+    private String name;
+    private String placeId;
+    private float rating;
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
     @OneToOne
     @JoinColumn(name = "userID")
@@ -25,13 +37,47 @@ public class SaveLocation {
     public SaveLocation() {
     }
 
-    public SaveLocation(SaveLocationBody saveLocationBody,User user) {
+    public SaveLocation(SaveLocationBody saveLocationBody, User user) {
         setLat(saveLocationBody.getLat());
         setLon(saveLocationBody.getLon());
-        setAddress(saveLocationBody.getAddress());
+        setName(saveLocationBody.getName());
+        setFormattedAddress(saveLocationBody.getFormattedAddress());
+        setFormattedPhoneNumber(saveLocationBody.getFormattedPhoneNumber());
         setUser(user);
+        setRating(saveLocationBody.getRating());
     }
 
+    public String getFormattedAddress() {
+        return formattedAddress;
+    }
+
+    public void setFormattedAddress(String formattedAddress) {
+        this.formattedAddress = formattedAddress;
+    }
+
+    public String getFormattedPhoneNumber() {
+        return formattedPhoneNumber;
+    }
+
+    public void setFormattedPhoneNumber(String formattedPhoneNumber) {
+        this.formattedPhoneNumber = formattedPhoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
 
     public String getId() {
         return id;
@@ -55,14 +101,6 @@ public class SaveLocation {
 
     public void setLon(Double lon) {
         this.lon = lon;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public User getUser() {
