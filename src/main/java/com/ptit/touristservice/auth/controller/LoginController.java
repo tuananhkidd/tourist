@@ -14,6 +14,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 @RestController
 @Api(value = "Login", description = "Đăng nhập", position = 1)
@@ -52,9 +53,10 @@ public class LoginController extends BaseController {
             @ApiResponse(code = 400, message = "Trường không hợp lệ")
     })
     @PostMapping("/register")
-    public Response register(@RequestBody RegisterBody studentRegisterBody) {
+    public Response register(@RequestBody RegisterBody studentRegisterBody,
+                             WebRequest webRequest) {
         try {
-            return loginService.register(studentRegisterBody);
+            return loginService.register(studentRegisterBody,webRequest);
         } catch (Exception e) {
             e.printStackTrace();
             return new ServerErrorResponse();

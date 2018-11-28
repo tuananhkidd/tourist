@@ -22,6 +22,7 @@ public class User {
     private String fullName;
     private Date birthDay;
     private String avatarUrl;
+    private boolean actived;
 
     public User(RegisterBody registerBody) {
         setUsername(registerBody.getUsername());
@@ -29,8 +30,16 @@ public class User {
         setFullName(registerBody.getFullName());
         setBirthDay(registerBody.getBirthDay() == -1 ? null:new Date(registerBody.getBirthDay()));
         setAvatarUrl(registerBody.getAvatarUrl());
+        setActived(false);
     }
 
+    public boolean getActived() {
+        return actived;
+    }
+
+    public void setActived(boolean actived) {
+        this.actived = actived;
+    }
 
     public String getFullName() {
         return fullName;
